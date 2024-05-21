@@ -35,6 +35,8 @@ public class LoginUserDetails implements UserDetails {
     public String getUsername() {
         return user.getUsername();
     }
+    
+    
 
     // アカウントが有効期限切れでないことを示すために、常にtrueを返します。
     @Override

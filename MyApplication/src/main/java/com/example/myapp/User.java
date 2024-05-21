@@ -68,6 +68,10 @@ public class User {
 		this.gender = gender;
 		this.role="general";
 	}
+	
+	public int getId() {
+		return this.id;
+	}
 
 
 }

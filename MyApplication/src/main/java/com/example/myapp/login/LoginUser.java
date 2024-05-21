@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginUser  {
 	
+	private int id;
 	
 	private String name;
 	
@@ -25,4 +26,6 @@ public class LoginUser  {
 	
 	private String gender;
 	private String role;
+	
+	
 }

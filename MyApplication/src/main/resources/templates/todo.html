@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- metaデータ、CSS読み込み -->
+    <div th:replace="~{common/meta :: common-meta}">common meta data</div>
+    <!-- JavaScript読み込み -->
+    <div th:replace="~{common/script :: common-script}">common-script</div>
+    <title>タスク一覧</title>
+</head>
+
+<body>
+    <!-- ヘッダー読み込み -->
+    <header th:replace="~{common/header :: common}">common header</header>
+    <main>
+        <div class="uk-container uk-margin-top uk-margin-large-bottom">
+            <div class="uk-column-1-2">
+                <h1 class="uk-heading-medium">Task List</h1>
+                <!-- Add Task Button -->
+                <div class="uk-margin-top">
+                    <a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Add Task</a>
+                    <!-- Modal -->
+                    <div id="modal-center" class="uk-flex-top" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+                            <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                            <form method="post" th:action="@{/todo}">
+                                <fieldset class="uk-fieldset">
+
+                                    <legend class="uk-legend">Add Task</legend>
+                            
+                                    <div class="uk-margin">
+                                        <input class="uk-input" type="text" placeholder="タスク名" aria-label="Input" name="taskname">
+                                    </div>
+                            
+                                    <div class="uk-margin">
+                                        <textarea class="uk-textarea" rows="5" placeholder="memo" aria-label="Textarea" name="tasknote"></textarea>
+                                    </div>
+
+                                    <input type="text" name="username" th:attr="value=${#authentication.principal.username}" hidden>
+                            
+                                    <div class="uk-margin">
+                                        <button class="uk-button uk-button-primary" type="submit">Submit</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Task List -->
+            <div class="uk-card uk-card-default uk-card-body">
+                <ul class="uk-list uk-list-divider" th:each="task:${tasks}">
+                    <!-- Task Item -->
+                    <li>
+                        <div class="uk-grid-small" uk-grid>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title" th:text="${task.taskname}">Task name</h3>
+                                <p th:text="${task.tasknote}">Description of Task 1</p>
+                            </div>
+                            <div class="uk-width-auto">
+                                <button class="uk-button uk-button-danger uk-button-small">Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- フッター読み込み -->
+    <footer th:replace="~{common/footer :: common}">common footer</footer>
+
+
+</body>
+
+</html>
