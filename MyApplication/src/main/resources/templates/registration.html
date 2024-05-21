@@ -33,10 +33,10 @@
                         <p th:if="${#fields.hasErrors('user.password')}" th:errors="${user.password}" class="uk-text-danger"></p>
                         <input class="uk-input" type="password" id="password" placeholder="パスワード" name="password" th:attr="value=${user.password}">
                     </div>
-                    <!-- <div class="uk-margin">
-                        <p th:if="${#fields.hasErrors('user.passwordValid')}" th:errors="*{user.passwordValid}" class="uk-text-danger"></p>
+                    <div class="uk-margin">
+                        <!-- <p th:if="${#fields.hasErrors('user.passwordValid')}" th:errors="*{user.passwordValid}" class="uk-text-danger"></p> -->
                         <input class="uk-input" type="password" id="confirmPassword" placeholder="パスワード再入力" name="passwordComfirmation" th:attr="value=${user.passwordComfirmation}">
-                    </div> -->
+                    </div>
                     <div class="uk-margin">
                         <!-- <p th:if="${#fields.hasErrors('user.birthday')}" th:errors="${user.birthday}" class="uk-text-danger"></p> -->
                         <input class="uk-input" type="date" id="dob" placeholder="生年月日" name="birthday" th:attr="value=${user.birthday}">

@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -35,20 +36,20 @@ public class User {
 //	@Size(min = 8, max = 16)
 	private String password;
 
-//	@Transient
-//	private String passwordComfirmation;
+	@Transient
+	private String passwordComfirmation;
 
 	//password確認用valid
 //	@AssertTrue(message = "Passwordが一致しません。")
 //	public boolean isPasswordValid() {
 //		if (password == null || password.isEmpty()) {
 //			return true;
-
+//
 //		}
 //
 //		return password.equals(passwordComfirmation);
 //	}
-
+		
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String birthday;
 

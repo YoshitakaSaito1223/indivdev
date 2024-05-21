@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.myapp.login.LoginUser;
+import com.example.myapp.login.UserRepository;
+import com.example.myapp.login.UserService;
+
 @Controller
 public class MainController {
 	
@@ -54,12 +58,16 @@ public class MainController {
 	}
 	
 	@PostMapping("/registration_completed")
-	public String registrationCompleted(@Validated @ModelAttribute("user") LoginUser loginUser,Model model) {
+	public String registrationCompleted(@ModelAttribute("user") LoginUser loginUser,Model model) {
 		userService.save(loginUser);
 		
 		return "/registration_completed";
 	}
 	
+	@GetMapping("/home")
+	public String Home() {
+		return "home";
+	}
 	
 	
 	

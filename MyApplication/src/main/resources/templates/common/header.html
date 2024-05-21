@@ -10,7 +10,7 @@
 
                         <ul class="uk-navbar-nav">
                             <li class="uk-active"><a th:href="@{/registration}"
-                                    th:style="'color: #ffffff;'">Registration</a></li>
+                                    th:style="'color: #ffffff;'" sec:authorize="!isAuthenticated()">Registration</a></li>
                             <li>
                                 <a href="#" th:style="'color: #ffffff;'">Parent</a>
                                 <div class="uk-navbar-dropdown">
@@ -22,6 +22,7 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li><a th:href="@{/home}" th:style="'color: #ffffff;'" sec:authorize="isAuthenticated()">Home</a></li>
                         </ul>
 
                     </div>

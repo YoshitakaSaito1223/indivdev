@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.example.myapp.login;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
