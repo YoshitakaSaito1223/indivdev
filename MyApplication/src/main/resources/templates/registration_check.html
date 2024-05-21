@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- metaデータ、CSS読み込み -->
+    <div th:replace="~{common/meta :: common-meta}">common meta data</div>
+    <!-- JavaScript読み込み -->
+    <div th:replace="~{common/script :: common-script}">common-script</div>
+    <title>ユーザー登録確認</title>
+</head>
+
+<body>
+    <main>
+        <div class="uk-container uk-flex uk-flex-center uk-flex-middle" style="height: 100vh;">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+                <h3 class="uk-card-title uk-text-center">ユーザー登録確認</h3>
+                <form id="confirmationForm" method="post" th:action="@{/registration_completed}" th:object="${user}">
+                    <div class="uk-margin">
+                        <label for="email">メールアドレス</label>
+                        <input class="uk-input" type="text" id="email" name="email" readonly th:attr="value=${user.email}">
+                    </div>
+                    <div class="uk-margin">
+                        <label for="name">氏名</label>
+                        <input class="uk-input" type="text" id="name" name="name" readonly th:attr="value=${user.name}">
+                    </div>
+                    <div class="uk-margin">
+                        <label for="userName">ユーザー名</label>
+                        <input class="uk-input" type="text" id="userName" name="username" readonly th:attr="value=${user.username}">
+                    </div>
+                    <div class="uk-margin">
+                        <label for="password">パスワード</label>
+                        <input class="uk-input" type="password" id="password" name="password" readonly th:attr="value=${user.password}">
+                        <!-- <input class="uk-input" type="password" id="passwordComfirmation" name="passwordComfirmation" readonly th:attr="value=${user.passwordComfirmation}" style="display:none;"> -->
+                    </div>
+                    <div class="uk-margin">
+                        <label for="birthday">生年月日</label>
+                        <input class="uk-input" type="date" id="birthday" name="birthday" readonly th:attr="value=${user.birthday}">
+                    </div>
+                    <div class="uk-margin">
+                        <label for="gender">性別</label>
+                        <input class="uk-input" type="text" id="gender" name="gender" readonly th:attr="value=${user.gender}">
+                    </div>
+                    <div class="uk-margin uk-flex uk-flex-center">
+                        <button class="uk-button uk-button-primary" type="submit">登録</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>

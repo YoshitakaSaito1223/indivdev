@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- metaデータ、CSS読み込み -->
+    <div th:replace="~{common/meta :: common-meta}">common meta data</div>
+    <!-- JavaScript読み込み -->
+    <div th:replace="~{common/script :: common-script}">common-script</div>
+    <title>Insert Title</title>
+</head>
+
+<body>
+
+    <main>
+        <div class="uk-container uk-flex uk-flex-center uk-flex-middle" style="height: 100vh;">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+                <h3 class="uk-card-title uk-text-center">登録が完了しました</h3>
+                <p class="uk-text-center">ユーザー情報の登録が正常に完了しました。</p>
+                <p class="uk-text-center"><a href="/">ホームに戻る</a></p>
+            </div>
+        </div>
+
+    </main>
+
+
+
+</body>
+
+</html>

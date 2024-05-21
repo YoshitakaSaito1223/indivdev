@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:replace="~{common/meta :: common-meta}">common meta data</div>
+    <div th:replace="~{common/script :: common-script}">common-script</div>
+    <title>Home</title>
+</head>
+
+<body>
+    <header th:replace="~{common/header :: common}">common header</header>
+    <main>
+        <header class="uk-margin-large-bottom">
+            <h1 class="uk-heading-medium uk-heading-line uk-text-center">Welcome to My Website</h1>
+          </header>
+          <section class="uk-margin-large-bottom">
+            <div class="uk-grid uk-child-width-1-2@s" uk-grid>
+              <div>
+                <div class="uk-card uk-card-default uk-card-body">
+                  <h3 class="uk-card-title">Section 1</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur eros vitae ligula pulvinar malesuada.</p>
+                </div>
+              </div>
+              <div>
+                <div class="uk-card uk-card-default uk-card-body">
+                  <h3 class="uk-card-title">Section 2</h3>
+                  <p>Nulla facilisi. Fusce condimentum turpis vel ligula viverra, sed volutpat tortor vestibulum.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <footer class="uk-text-center">
+            <p>&copy; 2024 My Website</p>
+          </footer>
+
+
+
+    </main>
+
+    <footer th:replace="~{common/footer :: common}">common footer</footer>
+
+   
+
+</body>
+
+</html>

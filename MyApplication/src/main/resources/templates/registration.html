@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- metaデータ、CSS読み込み -->
+    <div th:replace="~{common/meta :: common-meta}">common meta data</div>
+    <!-- JavaScript読み込み -->
+    <div th:replace="~{common/script :: common-script}">common-script</div>
+    <title>ユーザー登録</title>
+</head>
+
+<body>
+    <main>
+        <div class="uk-container uk-flex uk-flex-center uk-flex-middle" style="height: 100vh;">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+                <h3 class="uk-card-title uk-text-center">ユーザー登録</h3>
+                <form id="registrationForm" method="post" th:action="@{/registration_check}">
+                    <div class="uk-margin">
+                        <p th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" class="uk-text-danger"></p>
+                        <input class="uk-input" type="text" placeholder="メールアドレス" name="email" th:attr="value=${user.email}">
+                    </div>
+                    <div class="uk-margin">
+                        <p th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}" class="uk-text-danger"></p>
+                        <input class="uk-input" type="text" placeholder="氏名" name="name" th:attr="value=${user.name}">
+                    </div>
+                    <div class="uk-margin">
+                        <p th:if="${#fields.hasErrors('user.username')}" th:errors="${user.username}" class="uk-text-danger"></p>
+                        <input class="uk-input" type="text" placeholder="ユーザー名" name="username" th:attr="value=${user.username}">
+                    </div>
+                    <div class="uk-margin">
+                        <p th:if="${#fields.hasErrors('user.password')}" th:errors="${user.password}" class="uk-text-danger"></p>
+                        <input class="uk-input" type="password" id="password" placeholder="パスワード" name="password" th:attr="value=${user.password}">
+                    </div>
+                    <!-- <div class="uk-margin">
+                        <p th:if="${#fields.hasErrors('user.passwordValid')}" th:errors="*{user.passwordValid}" class="uk-text-danger"></p>
+                        <input class="uk-input" type="password" id="confirmPassword" placeholder="パスワード再入力" name="passwordComfirmation" th:attr="value=${user.passwordComfirmation}">
+                    </div> -->
+                    <div class="uk-margin">
+                        <!-- <p th:if="${#fields.hasErrors('user.birthday')}" th:errors="${user.birthday}" class="uk-text-danger"></p> -->
+                        <input class="uk-input" type="date" id="dob" placeholder="生年月日" name="birthday" th:attr="value=${user.birthday}">
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-form-controls">
+                            <p th:if="${#fields.hasErrors('user.gender')}" th:errors="${user.gender}" class="uk-text-danger"></p>
+                            <select class="uk-select" name="gender" th:attr="value=${user.gender}">
+                                <option value="" >性別</option>
+                                <option value="male" th:selected="${user.gender}==male">男性</option>
+                                <option value="female" th:selected="${user.gender}==female">女性</option>
+                                <option value="other" th:selected="${user.gender}==other">その他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-margin uk-flex uk-flex-center">
+                        <button class="uk-button uk-button-primary" type="submit">登録</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+    <script>
+        //生年月日の初期値設定
+        const dobInput = document.getElementById('dob');
+        const defaultDob = '2001-01-01'; // Format: YYYY-MM-DD
+        dobInput.value = defaultDob;
+
+    </script>
+
+
+</body>
+
+</html>
