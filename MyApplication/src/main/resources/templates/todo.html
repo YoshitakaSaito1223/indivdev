@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -20,9 +20,9 @@
                 <h1 class="uk-heading-medium">Task List</h1>
                 <!-- Add Task Button -->
                 <div class="uk-margin-top">
-                    <a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Add Task</a>
+                    <a class="uk-button uk-button-primary" href="#modal-add" uk-toggle>Add Task</a>
                     <!-- Modal -->
-                    <div id="modal-center" class="uk-flex-top" uk-modal>
+                    <div id="modal-add" class="uk-flex-top" uk-modal>
                         <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
                             <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -31,17 +31,20 @@
                                 <fieldset class="uk-fieldset">
 
                                     <legend class="uk-legend">Add Task</legend>
-                            
+
                                     <div class="uk-margin">
-                                        <input class="uk-input" type="text" placeholder="タスク名" aria-label="Input" name="taskname">
-                                    </div>
-                            
-                                    <div class="uk-margin">
-                                        <textarea class="uk-textarea" rows="5" placeholder="memo" aria-label="Textarea" name="tasknote"></textarea>
+                                        <input class="uk-input" type="text" placeholder="タスク名" aria-label="Input"
+                                            name="taskname">
                                     </div>
 
-                                    <input type="text" name="username" th:attr="value=${#authentication.principal.username}" hidden>
-                            
+                                    <div class="uk-margin">
+                                        <textarea class="uk-textarea" rows="5" placeholder="memo" aria-label="Textarea"
+                                            value="note" name="tasknote"></textarea>
+                                    </div>
+
+                                    <input type="text" name="username"
+                                        th:attr="value=${#authentication.principal.username}" hidden>
+
                                     <div class="uk-margin">
                                         <button class="uk-button uk-button-primary" type="submit">Submit</button>
                                     </div>
@@ -57,22 +60,74 @@
 
 
             <!-- Task List -->
-            <div class="uk-card uk-card-default uk-card-body">
-                <ul class="uk-list uk-list-divider" th:each="task:${tasks}">
-                    <!-- Task Item -->
-                    <li>
-                        <div class="uk-grid-small" uk-grid>
-                            <div class="uk-width-expand">
-                                <h3 class="uk-card-title" th:text="${task.taskname}">Task name</h3>
-                                <p th:text="${task.tasknote}">Description of Task 1</p>
+            <form th:action="@{/todo}" method="post" th:each="task:${tasks}" th:attr="id='updateform'+${task.id}">
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-small-top"
+                    th:if="${not task.iscompleted and not task.isdeleted}">
+                    <ul class="uk-list uk-list-divider">
+                        <!-- Task Item -->
+                        <li>
+                            <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-expand">
+                                    <h3 class="uk-card-title" th:text="${task.taskname}">Task name</h3>
+                                    <p th:text="${task.tasknote}">Description of Task 1</p>
+                                </div>
+                                <div class="uk-width-auto">
+                                    <button class="uk-button uk-button-primary uk-button-small" name="iscompleted"
+                                        value="true">完了</button>
+                                </div>
+                                <div class="uk-width-auto">
+                                    <!-- 編集モーダル -->
+                                    <a th:attr="href='#modal-update-'+${task.id}"
+                                        class="uk-button uk-button-secondary uk-button-small" uk-toggle>編集</a>
+                                    <!-- Modal -->
+                                    <div th:attr="id='modal-update-'+${task.id}" class="uk-flex-top" uk-modal>
+                                        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+                                            <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                                            <!-- <form method="post" th:action="@{/todo}" > -->
+                                                <fieldset class="uk-fieldset">
+
+                                                    <legend class="uk-legend">編集</legend>
+
+                                                    <div class="uk-margin">
+                                                        <input class="uk-input" type="text"
+                                                            th:attr="value=${task.taskname}" aria-label="Input"
+                                                             name="taskname">
+                                                    </div>
+
+                                                    <div class="uk-margin">
+                                                        <textarea class="uk-textarea" rows="5"
+                                                            th:text="${task.tasknote}" aria-label="Textarea"
+                                                             name="tasknote"></textarea>
+                                                    </div>
+                                                    <!-- param -->
+                                                    <input type="text" th:attr="value=${task.id}" name="id" hidden>
+                                                    <input type="text" name="userid" th:attr="value=${task.userid}"
+                                                        hidden>
+                                                    <!-- <input type="text" name="username"
+                                                        th:attr="value=${#authentication.principal.username}" hidden> -->
+                                                    <!-- button -->
+                                                    <div class="uk-margin">
+                                                        <button class="uk-button uk-button-primary"
+                                                            type="submit" th:attr="form='updateform'+${task.id}">完了</button>
+                                                    </div>
+                                                </fieldset>
+                                            <!-- </form> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-auto">
+                                    <button class="uk-button uk-button-danger uk-button-small" name="isdeleted"
+                                        value="true">削除 </button>
+                                </div>
                             </div>
-                            <div class="uk-width-auto">
-                                <button class="uk-button uk-button-danger uk-button-small">Delete</button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
         </div>
 
     </main>

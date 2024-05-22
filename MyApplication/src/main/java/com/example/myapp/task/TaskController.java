@@ -10,49 +10,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.myapp.login.UserRepository;
 
-
-
 @Controller
 public class TaskController {
 
 	@Autowired
 	TaskRepository taskRepository;
-	
+
 	@Autowired
 	SubTaskRepository subTaskRepository;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@GetMapping("/todo")
 	public String todo(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		if(taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()).isEmpty()) {
+		if (taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()).isEmpty()) {
 			return "todo";
 		}
-		
-		model.addAttribute("tasks",taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
-		
+
+		model.addAttribute("tasks", taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
+
 		return "todo";
 	}
-	
+
+	//add task
 	@PostMapping("/todo")
-	public String addTodo(Task task,String username,Model model) {
+	public String Todo(Task task,  Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		
-//		if(task.isSub()) {
-//			SubTask sub= new SubTask();
-//			subTaskRepository.save(task);
-//		}
-		task.setUserid(userRepository.findByUsername(username).getId());
+		System.out.println(task);
+		if (!(task.isIscompleted())) {
+			task.setUserid(userRepository.findByUsername(auth.getName()).getId());
+			taskRepository.save(task);
+		}
 		
 		taskRepository.save(task);
-		
-		model.addAttribute("tasks",taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
 
-		
+		model.addAttribute("tasks", taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
+
 		return "todo";
 	}
+
+	
 }

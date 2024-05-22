@@ -66,6 +66,8 @@ public class MainController {
 	
 	@GetMapping("/home")
 	public String Home() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(auth);
 		return "home";
 	}
 	

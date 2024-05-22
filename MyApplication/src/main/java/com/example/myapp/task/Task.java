@@ -19,6 +19,7 @@ public class Task {
 		this.taskname = taskname;
 		this.tasknote = tasknote;
 		this.iscompleted=false;
+		this.isdeleted=false;
 		this.isSub = isSub;
 		this.userid = userid;
 	}
@@ -29,6 +30,7 @@ public class Task {
 		this.tasknote = tasknote;
 		this.iscompleted=false;
 		this.isSub = false;
+		this.isdeleted=false;
 		this.userid = userid;
 	}
 
@@ -45,6 +47,8 @@ public class Task {
 	private boolean iscompleted=false;
 	
 	private boolean isSub;
+	
+	private boolean isdeleted=false;
 	
 	private int userid;
 	
