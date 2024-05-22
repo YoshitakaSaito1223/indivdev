@@ -9,8 +9,10 @@
                     <div class="uk-navbar-left">
 
                         <ul class="uk-navbar-nav">
-                            <li class="uk-active"><a th:href="@{/registration}"
-                                    th:style="'color: #ffffff;'" sec:authorize="!isAuthenticated()">Registration</a></li>
+                            <li class="uk-active"><a th:href="@{/registration}" th:style="'color: #ffffff;'"
+                                    sec:authorize="!isAuthenticated()">Registration</a></li>
+                            <li><a th:href="@{/home}" th:style="'color: #ffffff;'"
+                                    sec:authorize="isAuthenticated()">Home</a></li>
                             <li>
                                 <a href="#" th:style="'color: #ffffff;'">Parent</a>
                                 <div class="uk-navbar-dropdown">
@@ -22,7 +24,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a th:href="@{/home}" th:style="'color: #ffffff;'" sec:authorize="isAuthenticated()">Home</a></li>
+
                         </ul>
 
                     </div>
@@ -30,17 +32,22 @@
                     <div class="uk-navbar-right">
 
                         <ul class="uk-navbar-nav">
-                            <li><a th:href="@{/login}" th:style="'color: #ffffff;'" sec:authorize="!isAuthenticated()">Login</a></li>
+                            <li><a th:href="@{/login}" th:style="'color: #ffffff;'"
+                                    sec:authorize="!isAuthenticated()">Login</a></li>
                             <li sec:authorize="isAuthenticated()" th:style="'color: #ffffff;'">
-                                <a href="#" th:text="'Hello, ' + ${#authentication.principal.username}+'!'"th:style="'color: #ffffff;'"></a>
+                                <a href="#" th:text="'Hello, ' + ${#authentication.principal.username}+'!'"
+                                    th:style="'color: #ffffff;'"></a>
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li>Email:<a href="#" th:text="${#authentication.principal.username}"></a></li>
-                                        <li>Name:<a href="#" th:text="${#authentication.principal.username}">Item</a></li>
+                                        <li>Name:<a href="#" th:text="${#authentication.principal.username}">Item</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
-                            <li><a th:href="@{/logout}" th:style="'color: #ffffff;'" onclick="document.getElementById('logout-form').submit();" sec:authorize="isAuthenticated()">Logout</a></li>
+                            <li><a th:href="@{/logout}" th:style="'color: #ffffff;'"
+                                    onclick="document.getElementById('logout-form').submit();"
+                                    sec:authorize="isAuthenticated()">Logout</a></li>
                             <form id="logout-form" th:action="@{/logout}" method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>

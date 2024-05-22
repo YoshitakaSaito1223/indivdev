@@ -21,7 +21,7 @@
                 <!-- Add Task Button -->
                 <div class="uk-margin-top">
                     <a class="uk-button uk-button-primary" href="#modal-add" uk-toggle>Add Task</a>
-                    <!-- Modal -->
+                    <!-- Modal main task -->
                     <div id="modal-add" class="uk-flex-top" uk-modal>
                         <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
@@ -53,6 +53,14 @@
 
                         </div>
                     </div>
+                    <div class="uk-margin-small uk-column-3-1">
+                        <a class="uk-button uk-button-default " th:href="@{/todo/uncompleted}">uncompleted Task</a>
+                        <a class="uk-button uk-button-primary uk-margin-small" th:href="@{/todo/completed}">completed Task</a>
+                        <a class="uk-button uk-button-danger uk-margin-small" th:href="@{/todo/deleted}">deleted Task</a>
+
+                    </div>
+
+                   
                 </div>
             </div>
 
@@ -61,8 +69,8 @@
 
             <!-- Task List -->
             <form th:action="@{/todo}" method="post" th:each="task:${tasks}" th:attr="id='updateform'+${task.id}">
-                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-small-top"
-                    th:if="${not task.iscompleted and not task.isdeleted}">
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-small-top">
+                    <!-- th:if="${not task.iscompleted and not task.isdeleted}" -->
                     <ul class="uk-list uk-list-divider">
                         <!-- Task Item -->
                         <li>
@@ -86,37 +94,41 @@
                                             <button class="uk-modal-close-default" type="button" uk-close></button>
 
                                             <!-- <form method="post" th:action="@{/todo}" > -->
-                                                <fieldset class="uk-fieldset">
+                                            <fieldset class="uk-fieldset">
 
-                                                    <legend class="uk-legend">編集</legend>
+                                                <legend class="uk-legend">編集</legend>
 
-                                                    <div class="uk-margin">
-                                                        <input class="uk-input" type="text"
-                                                            th:value=${task.taskname} aria-label="Input"
-                                                             name="taskname" th:attr="form='updateform'+${task.id}">
-                                                    </div>
+                                                <div class="uk-margin">
+                                                    <input class="uk-input" type="text" th:value=${task.taskname}
+                                                        aria-label="Input" name="taskname"
+                                                        th:attr="form='updateform'+${task.id}">
+                                                </div>
 
-                                                    <div class="uk-margin">
-                                                        <textarea class="uk-textarea" rows="5"
-                                                            th:text="${task.tasknote}" aria-label="Textarea"
-                                                             name="tasknote" th:attr="form='updateform'+${task.id}"></textarea>
-                                                    </div>
-                                                    <!-- param -->
-                                                    <input type="text" th:value=${task.id} name="id" hidden th:attr="form='updateform'+${task.id}">
-                                                    <input type="text" name="userid" th:value=${task.userid}
-                                                        hidden th:attr="form='updateform'+${task.id}">
-                                                    <!-- <input type="text" name="username"
+                                                <div class="uk-margin">
+                                                    <textarea class="uk-textarea" rows="5" th:text="${task.tasknote}"
+                                                        aria-label="Textarea" name="tasknote"
+                                                        th:attr="form='updateform'+${task.id}"></textarea>
+                                                </div>
+                                                <!-- param -->
+                                                <input type="text" th:value=${task.id} name="id" hidden
+                                                    th:attr="form='updateform'+${task.id}">
+                                                <input type="text" name="userid" th:value=${task.userid} hidden
+                                                    th:attr="form='updateform'+${task.id}">
+                                                <!-- <input type="text" name="username"
                                                         th:attr="value=${#authentication.principal.username}" hidden> -->
-                                                    <!-- button -->
-                                                    <div class="uk-margin">
-                                                        <button class="uk-button uk-button-primary"
-                                                            type="submit" th:attr="form='updateform'+${task.id}">完了</button>
-                                                    </div>
-                                                </fieldset>
+                                                <!-- button -->
+                                                <div class="uk-margin">
+                                                    <button class="uk-button uk-button-primary" type="submit"
+                                                        th:attr="form='updateform'+${task.id}">完了</button>
+                                                </div>
+                                            </fieldset>
                                             <!-- </form> -->
 
                                         </div>
                                     </div>
+                                </div>
+                                <div class="uk-width-auto">
+                                    <button class="uk-button uk-button-default uk-button-small" href="#modal-addsub">サブタスク追加 </button>
                                 </div>
                                 <div class="uk-width-auto">
                                     <button class="uk-button uk-button-danger uk-button-small" name="isdeleted"
@@ -128,7 +140,15 @@
                 </div>
             </form>
 
+
+            <!-- to top  -->
+            <a href="" uk-totop uk-scroll class="uk-margin-medium-top"></a>
+
+            <!-- add task　bottom button -->
+            <a class="uk-button uk-button-primary ukp-button-floating uk-button-large
+	uk-position-bottom-right uk-position-fixed" href="#modal-add" uk-toggle uk-scroll>＋</a>
         </div>
+
 
     </main>
 

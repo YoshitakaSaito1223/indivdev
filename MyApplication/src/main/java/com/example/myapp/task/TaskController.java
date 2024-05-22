@@ -30,7 +30,7 @@ public class TaskController {
 			return "todo";
 		}
 
-		model.addAttribute("tasks", taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
+		model.addAttribute("tasks", taskRepository.findByUseridAndIscompletedAndIsdeleted(userRepository.findByUsername(auth.getName()).getId(),false,false));
 
 		return "todo";
 	}
@@ -48,8 +48,51 @@ public class TaskController {
 		
 		taskRepository.save(task);
 
-		model.addAttribute("tasks", taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
+		model.addAttribute("tasks", taskRepository.findByUseridAndIscompletedAndIsdeleted(userRepository.findByUsername(auth.getName()).getId(),false,false));
 
+		return "todo";
+	}
+	
+	@GetMapping("/todo/uncompleted")
+	public String uncompletedTask(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		model.addAttribute("tasks", taskRepository.findByUseridAndIscompletedAndIsdeleted(userRepository.findByUsername(auth.getName()).getId(),false,false));
+		
+		return "todo";
+	}
+	
+	@GetMapping("/todo/completed")
+	public String completedTask(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		model.addAttribute("tasks", taskRepository.findByUseridAndIscompletedAndIsdeleted(userRepository.findByUsername(auth.getName()).getId(),true,false));
+		
+		return "todo";
+	}
+	
+	@GetMapping("/todo/deleted")
+	public String deletedTask(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		model.addAttribute("tasks", taskRepository.findByUseridAndIsdeleted(userRepository.findByUsername(auth.getName()).getId(),true));
+		
+		return "todo";
+	}
+	
+	@PostMapping("/todo/sub")
+	public String subTask(SubTask subTask,Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		System.out.println(subTask);
+		if (!(subTask.isIscompleted())) {
+			subTask.setUserid(userRepository.findByUsername(auth.getName()).getId());
+			subTaskRepository.save(subTask);
+		}
+		taskRepository.save(subTask);
+
+		model.addAttribute("tasks", taskRepository.findByUserid(userRepository.findByUsername(auth.getName()).getId()));
+		
 		return "todo";
 	}
 
