@@ -26,7 +26,6 @@ public class MainController {
 
 	@GetMapping("/index")
 	public String getIndex() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); // 現在のユーザーの認証情報を取得します
 		return "index";
 	}
 	
@@ -65,9 +64,10 @@ public class MainController {
 	}
 	
 	@GetMapping("/home")
-	public String Home() {
+	public String Home(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println(auth);
+		
+		model.addAttribute("user",userRepository.findByUsername(auth.getName()));
 		return "home";
 	}
 	

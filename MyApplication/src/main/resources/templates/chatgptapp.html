@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- metaデータ、CSS読み込み -->
+    <div th:replace="~{common/meta :: common-meta}">common meta data</div>
+    <!-- JavaScript読み込み -->
+    <div th:replace="~{common/script :: common-script}">common-script</div>
+    <title>Insert Title</title>
+</head>
+
+<body>
+    <!-- ヘッダー読み込み -->
+    <header th:replace="~{common/header :: common}">common header</header>
+    <main>
+
+        <div class="uk-container uk-margin-top">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-1">
+                <div id="chat-container" class="uk-flex uk-flex-column uk-flex-middle" th:text="${response}">
+                    <!-- Chat messages will be displayed here -->
+                </div>
+                <div class="uk-margin-top">
+                    <input id="user-input" class="uk-input" type="text" placeholder="Type your message...">
+                    <button id="send-button" class="uk-button uk-button-primary">Send</button>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- フッター読み込み -->
+    <footer th:replace="~{common/footer :: common}">common footer</footer>
+    
+
+</body>
+
+</html>

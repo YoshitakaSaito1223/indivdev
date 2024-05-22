@@ -65,12 +65,10 @@
             </div>
 
 
-
-
             <!-- Task List -->
             <form th:action="@{/todo}" method="post" th:each="task:${tasks}" th:attr="id='updateform'+${task.id}">
                 <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-small-top">
-                    <!-- th:if="${not task.iscompleted and not task.isdeleted}" -->
+                    <!-- thymeleafでの条件式・・・ th:if="${not task.iscompleted and not task.isdeleted}" -->
                     <ul class="uk-list uk-list-divider">
                         <!-- Task Item -->
                         <li>

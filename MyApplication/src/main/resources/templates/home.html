@@ -18,11 +18,15 @@
         <div class="uk-container">
             <div class="uk-card uk-card-default uk-card-body uk-margin-small-top uk-card-hover">
                 <h3 class="uk-card-title">ようこそ！</h3>
+                <p>ユーザー名：<span th:text="${user.username}">username</span></p>
+                <p>名前：<span th:text="${user.name}">name</span></p>
+                <p>Email：<span th:text="${user.email}">email</span></p>
+                <p>ユーザーID：<span th:text="${user.id}">id</span></p>
             </div>
             <div class="uk-column-1-2 uk-margin-large">
                 <a th:href="@{/todo}" class=" uk-displey-block uk-link-toggle uk-card uk-card-default uk-card-body uk-card-hover uk-margin-small">
                     <h3 class="uk-card-title"><span class="uk-link-heading">タスク管理</span></h3>
-                    <p>タスク管理ができます。サブタスクの追加も可能です。できればGoogleTaskとの連携もしたいです。(未実装)</p>
+                    <p>タスク管理ができます。<br>サブタスクの追加も可能にしたい。GoogleTaskとの連携もしたいです。(未実装)</p>
                 </a>
                 <a href="#" class="uk-display-block uk-link-toggle uk-card uk-card-secondary uk-card-body uk-card-hover uk-margin-small">
                     <h3 class="uk-card-title"><span class="uk-link-heading">チーム進捗管理</span></h3>

@@ -1,20 +1,22 @@
-package com.example.myapp;
+package com.example.myapp.chatgpt;
 
-public class ChatGptApiClient {
-/*
-    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String API_KEY = "任意のAPI Key";
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
-    public static void main(String[] args) {
-        try {
-            String responseMessage = callChatGptApi();
-            System.out.println("Response from ChatGPT: " + responseMessage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    public static String callChatGptApi() throws Exception {
+public class ChatGPTService {
+
+	@Autowired
+	ChatGPT chatgpt;
+	
+	public String callChatGptApi() throws Exception {
         HttpClient client = HttpClient.newHttpClient();
 
         JSONArray messages = new JSONArray();
@@ -28,9 +30,9 @@ public class ChatGptApiClient {
         requestBody.put("max_tokens", 256);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL))
+                .uri(URI.create(chatgpt.getApiurl()))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + API_KEY)
+                .header("Authorization", "Bearer " + chatgpt.getApikey())
                 .POST(BodyPublishers.ofString(requestBody.toString(), StandardCharsets.UTF_8))
                 .build();
 
@@ -47,5 +49,5 @@ public class ChatGptApiClient {
             throw new RuntimeException("Failed to call ChatGPT API: " + response.body());
         }
     }
-    */
+	
 }

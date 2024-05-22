@@ -10,17 +10,16 @@
 
                         <ul class="uk-navbar-nav">
                             <li class="uk-active"><a th:href="@{/registration}" th:style="'color: #ffffff;'"
-                                    sec:authorize="!isAuthenticated()">Registration</a></li>
+                                    sec:authorize="!isAuthenticated()">ユーザー登録</a></li>
                             <li><a th:href="@{/home}" th:style="'color: #ffffff;'"
                                     sec:authorize="isAuthenticated()">Home</a></li>
                             <li>
-                                <a href="#" th:style="'color: #ffffff;'">Parent</a>
+                                <a href="#" th:style="'color: #ffffff;'">機能一覧</a>
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                                        <li class="uk-active uk-text-muted"><a href="#"
-                                                th:style="'color: #ffffff;'">Active</a></li>
-                                        <li><a href="#">Item</a></li>
-                                        <li><a href="#">Item</a></li>
+                                        <li><a th:href="@{/todo}">ToDo</a></li>
+                                        <li><a th:href="@{/chatgptapp}">ChatGPTapp</a></li>
+                                        <li><a th:href="@{/home}">home</a></li>
                                     </ul>
                                 </div>
                             </li>
