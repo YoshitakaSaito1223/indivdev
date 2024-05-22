@@ -92,19 +92,19 @@
 
                                                     <div class="uk-margin">
                                                         <input class="uk-input" type="text"
-                                                            th:attr="value=${task.taskname}" aria-label="Input"
-                                                             name="taskname">
+                                                            th:value=${task.taskname} aria-label="Input"
+                                                             name="taskname" th:attr="form='updateform'+${task.id}">
                                                     </div>
 
                                                     <div class="uk-margin">
                                                         <textarea class="uk-textarea" rows="5"
                                                             th:text="${task.tasknote}" aria-label="Textarea"
-                                                             name="tasknote"></textarea>
+                                                             name="tasknote" th:attr="form='updateform'+${task.id}"></textarea>
                                                     </div>
                                                     <!-- param -->
-                                                    <input type="text" th:attr="value=${task.id}" name="id" hidden>
-                                                    <input type="text" name="userid" th:attr="value=${task.userid}"
-                                                        hidden>
+                                                    <input type="text" th:value=${task.id} name="id" hidden th:attr="form='updateform'+${task.id}">
+                                                    <input type="text" name="userid" th:value=${task.userid}
+                                                        hidden th:attr="form='updateform'+${task.id}">
                                                     <!-- <input type="text" name="username"
                                                         th:attr="value=${#authentication.principal.username}" hidden> -->
                                                     <!-- button -->
