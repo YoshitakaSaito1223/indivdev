@@ -29,7 +29,7 @@ public class ChatGptApiClient {
         requestBody.put("model", "gpt-3.5-turbo");
         requestBody.put("messages", messages);
         requestBody.put("temperature", 0.5);
-        requestBody.put("max_tokens", 256);
+        requestBody.put("max_tokens", 512);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(chatgpt.getApiurl()))
